@@ -7,7 +7,18 @@ function reducer(state, action) {
     case "update-task":
       return state;
     case "add-category":
-      return state;
+      console.log("adding category");
+      const newCategory = {
+        id: Math.floor(Math.random() * 100),
+        title: action.payload.title,
+        tasks: [],
+      };
+      const newListOfCategories = [...state.listOfCategories, newCategory];
+      const newStateWithNewListOfCategories = {
+        ...state,
+        listOfCategories: newListOfCategories,
+      };
+      return newStateWithNewListOfCategories;
     case "remove-category":
       return state;
   }

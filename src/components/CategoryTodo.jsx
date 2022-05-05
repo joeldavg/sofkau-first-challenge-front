@@ -4,11 +4,8 @@ import { Store } from "./StoreProvider";
 const CategoryTodo = () => {
   const { state, dispatch } = useContext(Store);
 
-  console.log(state);
-
   return (
     <div>
-      <h1>Category Dashboard</h1>
       <ul>
         {state.listOfCategories.map((category) => {
           return (
