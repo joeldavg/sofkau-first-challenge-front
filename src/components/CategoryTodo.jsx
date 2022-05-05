@@ -4,6 +4,13 @@ import { Store } from "./StoreProvider";
 const CategoryTodo = () => {
   const { state, dispatch } = useContext(Store);
 
+  const onDelete = (note) => {
+    dispatch({
+      type: "remove-category",
+      payload: note,
+    });
+  };
+
   return (
     <div>
       <ul>
@@ -11,6 +18,7 @@ const CategoryTodo = () => {
           return (
             <li key={category.id}>
               {category.title} <br />
+              <button onClick={() => onDelete(category)}>Delete</button>
               <ol>
                 {category.tasks.map((task) => {
                   return <li key={task.id}>{task.message}</li>;

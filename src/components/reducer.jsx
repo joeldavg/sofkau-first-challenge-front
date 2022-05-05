@@ -20,7 +20,17 @@ function reducer(state, action) {
       };
       return newStateWithNewListOfCategories;
     case "remove-category":
-      return state;
+      const newListOfCategoriesWithoutPayloadCategory =
+        state.listOfCategories.filter(
+          (category) => category.id !== action.payload.id
+        );
+
+      const newStateWithCategoryDelete = {
+        ...state,
+        listOfCategories: newListOfCategoriesWithoutPayloadCategory,
+      };
+
+      return newStateWithCategoryDelete;
   }
 }
 
