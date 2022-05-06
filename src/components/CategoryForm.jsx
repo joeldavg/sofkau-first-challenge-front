@@ -5,12 +5,22 @@ const CategoryForm = () => {
   const { state, dispatch } = useContext(Store);
 
   const formRef = useRef(null);
-  const onAdd = (event) => {
+  //
+  const onAdd = async (event) => {
     event.preventDefault();
+
     if (title) {
+      let categorySaved = await fetch(
+        `http://localhost:8081/api/todo/category/save`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ title: title }),
+        }
+      );
       dispatch({
         type: "add-category",
-        payload: { title },
+        payload: await categorySaved.json(),
       });
     }
     setTitle("");
