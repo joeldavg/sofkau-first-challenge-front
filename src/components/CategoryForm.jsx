@@ -13,7 +13,7 @@ const CategoryForm = () => {
         payload: { title },
       });
     }
-
+    setTitle("");
     formRef.current.reset();
   };
 

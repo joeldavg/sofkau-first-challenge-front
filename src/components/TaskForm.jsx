@@ -1,20 +1,21 @@
 import React, { useContext, useRef, useState } from "react";
 import { Store } from "./StoreProvider";
 
-const TaskForm = () => {
+const TaskForm = ({ categoryId }) => {
   //
   const { state, dispatch } = useContext(Store);
-  const formRef = useRef(null);
+  const formRef = useRef("");
   //
   const onAddTask = (event) => {
     event.preventDefault();
     if (message) {
       dispatch({
         type: "add-task",
-        payload: { message },
+        payload: { message, categoryId },
       });
     }
 
+    setMessage("");
     formRef.current.reset();
   };
 

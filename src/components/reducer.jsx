@@ -1,7 +1,30 @@
 function reducer(state, action) {
   switch (action.type) {
     case "add-task":
-      console.log("adding task");
+      const taskToAdd = {
+        id: Math.floor(Math.random() * 1000),
+        message: action.payload.message,
+        done: false,
+        categoryId: action.payload.categoryId,
+      };
+
+      const categoryToAddTask = state.find(
+        (category) => category.id === taskToAdd.categoryId
+      );
+
+      if (categoryToAddTask) {
+        const newTaskAdded = [...categoryToAddTask.tasks, taskToAdd];
+
+        const newState = state.map((category) => {
+          if (category.id === categoryToAddTask.id) {
+            return { ...categoryToAddTask, tasks: newTaskAdded };
+          }
+          return category;
+        });
+
+        return newState;
+      }
+
       return state;
     case "remove-task":
       const taskToDelete = action.payload;
@@ -49,7 +72,7 @@ function reducer(state, action) {
       return state;
     case "add-category":
       const newCategory = {
-        id: Math.floor(Math.random() * 100),
+        id: Math.floor(Math.random() * 1000),
         title: action.payload.title,
         tasks: [],
       };

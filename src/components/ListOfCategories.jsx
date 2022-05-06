@@ -20,7 +20,7 @@ const ListOfCategories = () => {
           <li key={category.id}>
             {category.title}
             <button onClick={() => onDelete(category)}>Delete</button>
-            <TaskForm />
+            <TaskForm categoryId={category.id} />
             <ListOfTasks tasks={category.tasks} />
             <br />
           </li>
