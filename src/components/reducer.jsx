@@ -4,12 +4,7 @@ function reducer(state, action) {
       const newStateWithAllCategories = action.payload;
       return newStateWithAllCategories;
     case "add-task":
-      const taskToAdd = {
-        id: Math.floor(Math.random() * 1000),
-        message: action.payload.message,
-        done: false,
-        categoryId: action.payload.categoryId,
-      };
+      const taskToAdd = action.payload;
 
       const categoryToAddTask = state.find(
         (category) => category.id === taskToAdd.categoryId

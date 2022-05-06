@@ -6,12 +6,22 @@ const TaskForm = ({ categoryId }) => {
   const { state, dispatch } = useContext(Store);
   const formRef = useRef("");
   //
-  const onAddTask = (event) => {
+  const onAddTask = async (event) => {
     event.preventDefault();
     if (message) {
+      let newTask = {
+        message: message,
+        done: false,
+        categoryId: categoryId,
+      };
+      let taskSaved = await fetch(`http://localhost:8081/api/todo/task/save`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newTask),
+      });
       dispatch({
         type: "add-task",
-        payload: { message, categoryId },
+        payload: await taskSaved.json(),
       });
     }
 

@@ -4,11 +4,20 @@ import { Store } from "./StoreProvider";
 const Task = ({ task }) => {
   const { state, dispatch } = useContext(Store);
 
-  const onDelete = (task) => {
-    dispatch({
-      type: "remove-task",
-      payload: task,
-    });
+  const onDelete = async (task) => {
+    let response = await fetch(
+      `http://localhost:8081/api/todo/task/delete/${task.id}`,
+      {
+        method: "DELETE",
+      }
+    );
+
+    if (response.status === 200) {
+      dispatch({
+        type: "remove-task",
+        payload: task,
+      });
+    }
   };
 
   const onCheckbox = async (event, task) => {

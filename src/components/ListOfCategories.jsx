@@ -25,11 +25,20 @@ const ListOfCategories = () => {
     return data;
   };
 
-  const onDelete = (category) => {
-    dispatch({
-      type: "remove-category",
-      payload: category,
-    });
+  const onDelete = async (category) => {
+    let response = await fetch(
+      `http://localhost:8081/api/todo/category/delete/${category.id}`,
+      {
+        method: "DELETE",
+      }
+    );
+
+    if (response.status === 200) {
+      dispatch({
+        type: "remove-category",
+        payload: category,
+      });
+    }
   };
 
   return (

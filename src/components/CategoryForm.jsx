@@ -6,7 +6,7 @@ const CategoryForm = () => {
 
   const formRef = useRef(null);
   //
-  const onAdd = async (event) => {
+  const onAddCategory = async (event) => {
     event.preventDefault();
 
     if (title) {
@@ -43,7 +43,7 @@ const CategoryForm = () => {
           name="title"
           placeholder="TO-DO Category"
         />
-        <button onClick={onAdd}>New Category</button>
+        <button onClick={onAddCategory}>New Category</button>
       </form>
     </div>
   );
