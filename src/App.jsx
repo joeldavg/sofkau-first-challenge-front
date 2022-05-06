@@ -1,13 +1,13 @@
 import "./App.css";
 import CategoryForm from "./components/CategoryForm";
-import CategoryTodo from "./components/CategoryTodo";
+import ListOfCategories from "./components/ListOfCategories";
 import StoreProvider from "./components/StoreProvider";
 
 function App() {
   return (
     <StoreProvider>
       <CategoryForm />
-      <CategoryTodo />
+      <ListOfCategories />
     </StoreProvider>
   );
 }
