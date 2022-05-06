@@ -1,10 +1,29 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import ListOfTasks from "./ListOfTasks";
 import { Store } from "./StoreProvider";
 import TaskForm from "./TaskForm";
 
 const ListOfCategories = () => {
   const { state, dispatch } = useContext(Store);
+
+  useEffect(() => {
+    let listOfCategories = fetchAllCategories().then((categories) => {
+      dispatch({
+        type: "get-categories",
+        payload: categories,
+      });
+    });
+  }, []);
+
+  const fetchAllCategories = async () => {
+    let response = await fetch(
+      `http://localhost:8081/api/todo/category/getAll`
+    );
+
+    let data = await response.json();
+
+    return data;
+  };
 
   const onDelete = (category) => {
     dispatch({
