@@ -1,7 +1,7 @@
 import React, { useContext, useRef, useState } from "react";
 import { Store } from "./StoreProvider";
 
-const TaskForm = ({ categoryId }) => {
+const TaskForm = ({ categoryId, clickedEdit, setClickedEdit }) => {
   //
   const { state, dispatch } = useContext(Store);
   const formRef = useRef("");
@@ -35,15 +35,58 @@ const TaskForm = ({ categoryId }) => {
     setMessage(event.target.value);
   };
 
+  const onUpdateTask = async (event) => {
+    event.preventDefault();
+    if (message) {
+      let updatedTask = {
+        ...task,
+        message: message,
+      };
+      let taskUpdated = await fetch(
+        `http://localhost:8081/api/todo/task/update`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(updatedTask),
+        }
+      );
+      dispatch({
+        type: "update-task",
+        payload: await taskUpdated.json(),
+      });
+    }
+    setClickedEdit({
+      clicked: false,
+      task: {},
+    });
+    setMessage("");
+    formRef.current.reset();
+  };
+
+  let { clicked, task } = { ...clickedEdit };
   return (
     <form ref={formRef}>
-      <input
-        onChange={addingMessage}
-        type="text"
-        name="message"
-        placeholder="¿What would like to do?"
-      />
-      <button onClick={onAddTask}>Add</button>
+      {!clicked ? (
+        <>
+          <input
+            onChange={addingMessage}
+            type="text"
+            name="message"
+            placeholder="¿What would like to do?"
+          />
+          <button onClick={onAddTask}>Add</button>
+        </>
+      ) : (
+        <>
+          <input
+            onChange={addingMessage}
+            type="text"
+            name="message"
+            placeholder="Add new message"
+          />
+          <button onClick={onUpdateTask}>Update</button>
+        </>
+      )}
     </form>
   );
 };

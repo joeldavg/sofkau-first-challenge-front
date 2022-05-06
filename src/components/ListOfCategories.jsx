@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ListOfTasks from "./ListOfTasks";
 import { Store } from "./StoreProvider";
 import TaskForm from "./TaskForm";
@@ -41,6 +41,11 @@ const ListOfCategories = () => {
     }
   };
 
+  const [clickedEdit, setClickedEdit] = useState({
+    clicked: false,
+    task: {},
+  });
+
   return (
     <ul>
       {state.map((category) => {
@@ -48,8 +53,16 @@ const ListOfCategories = () => {
           <li key={category.id}>
             {category.title}
             <button onClick={() => onDelete(category)}>Delete</button>
-            <TaskForm categoryId={category.id} />
-            <ListOfTasks tasks={category.tasks} />
+            <TaskForm
+              categoryId={category.id}
+              clickedEdit={clickedEdit}
+              setClickedEdit={setClickedEdit}
+            />
+            <ListOfTasks
+              tasks={category.tasks}
+              clickedEdit={clickedEdit}
+              setClickedEdit={setClickedEdit}
+            />
             <br />
           </li>
         );

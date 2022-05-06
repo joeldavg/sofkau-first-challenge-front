@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Store } from "./StoreProvider";
 
-const Task = ({ task }) => {
+const Task = ({ task, clickedEdit, setClickedEdit }) => {
   const { state, dispatch } = useContext(Store);
 
   const onDelete = async (task) => {
@@ -37,6 +37,13 @@ const Task = ({ task }) => {
     });
   };
 
+  const onEdit = async (task) => {
+    setClickedEdit({
+      clicked: true,
+      task: task,
+    });
+  };
+
   return (
     <li>
       <span style={task.done ? { textDecoration: "line-through" } : {}}>
@@ -48,7 +55,12 @@ const Task = ({ task }) => {
         checked={task.done}
       />
       <button onClick={() => onDelete(task)}>Delete</button>
-      <button>Edit</button>
+      <button
+        disabled={task.done || clickedEdit.clicked}
+        onClick={() => onEdit(task)}
+      >
+        Edit
+      </button>
     </li>
   );
 };
