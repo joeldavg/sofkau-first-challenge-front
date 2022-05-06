@@ -54,18 +54,18 @@ function reducer(state, action) {
     case "update-task":
       const taskUpdated = action.payload;
 
-      const categoryParent = state.find(
+      const categoryToUpdate = state.find(
         (category) => category.id === taskUpdated.categoryId
       );
 
-      if (categoryParent) {
-        const taskArrayUpdated = categoryParent.tasks.map((task) => {
+      if (categoryToUpdate) {
+        const taskArrayUpdated = categoryToUpdate.tasks.map((task) => {
           return task.id === taskUpdated.id ? taskUpdated : task;
         });
 
         const newState = state.map((category) => {
-          if (category.id === categoryParent.id) {
-            return { ...categoryParent, tasks: taskArrayUpdated };
+          if (category.id === categoryToUpdate.id) {
+            return { ...categoryToUpdate, tasks: taskArrayUpdated };
           }
           return category;
         });

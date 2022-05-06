@@ -11,12 +11,20 @@ const Task = ({ task }) => {
     });
   };
 
-  const onCheckbox = (event, task) => {
+  const onCheckbox = async (event, task) => {
     const checked = event.currentTarget.checked;
     const taskUpdated = { ...task, done: checked };
+    let taskUpdatedPromise = await fetch(
+      `http://localhost:8081/api/todo/task/update`,
+      {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(taskUpdated),
+      }
+    );
     dispatch({
       type: "update-task",
-      payload: taskUpdated,
+      payload: await taskUpdatedPromise.json(),
     });
   };
 
