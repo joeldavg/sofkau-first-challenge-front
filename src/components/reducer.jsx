@@ -70,7 +70,6 @@ function reducer(state, action) {
       return state;
     case "add-category":
       const newCategory = action.payload;
-      console.log(newCategory);
       const newState = [...state, newCategory];
 
       return newState;
