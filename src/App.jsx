@@ -1,13 +1,22 @@
+import { useState } from "react";
 import "./App.css";
 import CategoryForm from "./components/CategoryForm";
 import ListOfCategories from "./components/ListOfCategories";
 import StoreProvider from "./components/StoreProvider";
 
 function App() {
+  const [clickedEdit, setClickedEdit] = useState({
+    clicked: false,
+    task: {},
+  });
+
   return (
     <StoreProvider>
-      <CategoryForm />
-      <ListOfCategories />
+      <CategoryForm clickedEdit={clickedEdit} />
+      <ListOfCategories
+        clickedEdit={clickedEdit}
+        setClickedEdit={setClickedEdit}
+      />
     </StoreProvider>
   );
 }

@@ -50,11 +50,14 @@ const Task = ({ task, clickedEdit, setClickedEdit }) => {
         {task.message}
       </span>
       <input
+        disabled={clickedEdit.clicked}
         onChange={(event) => onCheckbox(event, task)}
         type="checkbox"
         checked={task.done}
       />
-      <button onClick={() => onDelete(task)}>Delete</button>
+      <button disabled={clickedEdit.clicked} onClick={() => onDelete(task)}>
+        Delete
+      </button>
       <button
         disabled={task.done || clickedEdit.clicked}
         onClick={() => onEdit(task)}

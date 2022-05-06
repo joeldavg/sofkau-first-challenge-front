@@ -3,7 +3,7 @@ import ListOfTasks from "./ListOfTasks";
 import { Store } from "./StoreProvider";
 import TaskForm from "./TaskForm";
 
-const ListOfCategories = () => {
+const ListOfCategories = ({ clickedEdit, setClickedEdit }) => {
   const { state, dispatch } = useContext(Store);
 
   useEffect(() => {
@@ -41,18 +41,18 @@ const ListOfCategories = () => {
     }
   };
 
-  const [clickedEdit, setClickedEdit] = useState({
-    clicked: false,
-    task: {},
-  });
-
   return (
     <ul>
       {state.map((category) => {
         return (
           <li key={category.id}>
             {category.title}
-            <button onClick={() => onDelete(category)}>Delete</button>
+            <button
+              disabled={clickedEdit.clicked}
+              onClick={() => onDelete(category)}
+            >
+              Delete
+            </button>
             <TaskForm
               categoryId={category.id}
               clickedEdit={clickedEdit}

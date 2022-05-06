@@ -1,7 +1,7 @@
 import React, { useContext, useRef, useState } from "react";
 import { Store } from "./StoreProvider";
 
-const CategoryForm = () => {
+const CategoryForm = ({ clickedEdit }) => {
   const { state, dispatch } = useContext(Store);
 
   const formRef = useRef(null);
@@ -38,12 +38,15 @@ const CategoryForm = () => {
       <h1>Dashboard</h1>
       <form ref={formRef}>
         <input
+          disabled={clickedEdit.clicked}
           onChange={addingTitle}
           type="text"
           name="title"
           placeholder="TO-DO Category"
         />
-        <button onClick={onAddCategory}>New Category</button>
+        <button disabled={clickedEdit.clicked} onClick={onAddCategory}>
+          New Category
+        </button>
       </form>
     </div>
   );
