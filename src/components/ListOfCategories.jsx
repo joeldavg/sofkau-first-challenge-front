@@ -42,17 +42,20 @@ const ListOfCategories = ({ clickedEdit, setClickedEdit }) => {
   };
 
   return (
-    <ul>
+    <div className="flex flex-col items-center md:flex-row md:justify-evenly md:flex-wrap">
       {state.map((category) => {
         return (
-          <li key={category.id}>
-            {category.title}
-            <button
-              disabled={clickedEdit.clicked}
-              onClick={() => onDelete(category)}
-            >
-              Delete
-            </button>
+          <div key={category.id} className="border border-black p-5 bg-white">
+            <div className="flex justify-around mb-5">
+              <span className="text-black font-black">{category.title}</span>
+              <button
+                className="bg-red-500 hover:bg-red-700 text-white font-normal py-1 px-2 rounded-full "
+                disabled={clickedEdit.clicked}
+                onClick={() => onDelete(category)}
+              >
+                Delete
+              </button>
+            </div>
             <TaskForm
               categoryId={category.id}
               clickedEdit={clickedEdit}
@@ -64,10 +67,10 @@ const ListOfCategories = ({ clickedEdit, setClickedEdit }) => {
               setClickedEdit={setClickedEdit}
             />
             <br />
-          </li>
+          </div>
         );
       })}
-    </ul>
+    </div>
   );
 };
 

@@ -34,17 +34,27 @@ const CategoryForm = ({ clickedEdit }) => {
   };
 
   return (
-    <div>
-      <h1>Dashboard</h1>
-      <form ref={formRef}>
+    <div className="flex flex-col items-center">
+      <h1 className="text-center text-4xl font-medium text-blue-900">
+        Dashboard
+      </h1>
+      <form
+        className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col items-center"
+        ref={formRef}
+      >
         <input
+          className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
           disabled={clickedEdit.clicked}
           onChange={addingTitle}
           type="text"
           name="title"
           placeholder="TO-DO Category"
         />
-        <button disabled={clickedEdit.clicked} onClick={onAddCategory}>
+        <button
+          className="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+          disabled={clickedEdit.clicked}
+          onClick={onAddCategory}
+        >
           New Category
         </button>
       </form>

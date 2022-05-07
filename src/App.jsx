@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./App.css";
+import "./index.css";
 import CategoryForm from "./components/CategoryForm";
 import ListOfCategories from "./components/ListOfCategories";
 import StoreProvider from "./components/StoreProvider";

@@ -45,11 +45,12 @@ const Task = ({ task, clickedEdit, setClickedEdit }) => {
   };
 
   return (
-    <li>
+    <div className="flex justify-around">
       <span style={task.done ? { textDecoration: "line-through" } : {}}>
         {task.message}
       </span>
       <input
+        className="w-6 h-6 text-green-600 border-0 rounded-md focus:ring-0"
         disabled={clickedEdit.clicked}
         onChange={(event) => onCheckbox(event, task)}
         type="checkbox"
@@ -64,7 +65,7 @@ const Task = ({ task, clickedEdit, setClickedEdit }) => {
       >
         Edit
       </button>
-    </li>
+    </div>
   );
 };
 
