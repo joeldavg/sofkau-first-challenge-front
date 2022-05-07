@@ -45,27 +45,43 @@ const Task = ({ task, clickedEdit, setClickedEdit }) => {
   };
 
   return (
-    <div className="flex justify-around">
-      <span style={task.done ? { textDecoration: "line-through" } : {}}>
-        {task.message}
-      </span>
-      <input
-        className="w-6 h-6 text-green-600 border-0 rounded-md focus:ring-0"
-        disabled={clickedEdit.clicked}
-        onChange={(event) => onCheckbox(event, task)}
-        type="checkbox"
-        checked={task.done}
-      />
-      <button disabled={clickedEdit.clicked} onClick={() => onDelete(task)}>
-        Delete
-      </button>
-      <button
-        disabled={task.done || clickedEdit.clicked}
-        onClick={() => onEdit(task)}
-      >
-        Edit
-      </button>
-    </div>
+    <tr>
+      <td>
+        <span
+          className="text text-2xl font-bold text-black justify-start "
+          style={task.done ? { textDecoration: "line-through" } : {}}
+        >
+          {task.message}
+        </span>
+      </td>
+      <td>
+        <input
+          className="w-6 h-6 text-green-600 border-0 rounded-md focus:ring-0"
+          disabled={clickedEdit.clicked}
+          onChange={(event) => onCheckbox(event, task)}
+          type="checkbox"
+          checked={task.done}
+        />
+      </td>
+      <td>
+        <button
+          className="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-3 py-1.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+          disabled={clickedEdit.clicked}
+          onClick={() => onDelete(task)}
+        >
+          Delete
+        </button>
+      </td>
+      <td>
+        <button
+          className="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-3 py-1.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          disabled={task.done || clickedEdit.clicked}
+          onClick={() => onEdit(task)}
+        >
+          Edit
+        </button>
+      </td>
+    </tr>
   );
 };
 

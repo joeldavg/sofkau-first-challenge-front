@@ -73,7 +73,7 @@ const TaskForm = ({ categoryId, clickedEdit, setClickedEdit }) => {
             onChange={addingMessage}
             type="text"
             name="message"
-            placeholder="¿What would like to do?"
+            placeholder="Add new task"
           />
           <button
             className="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
@@ -83,16 +83,21 @@ const TaskForm = ({ categoryId, clickedEdit, setClickedEdit }) => {
           </button>
         </div>
       ) : (
-        <>
+        <div className="flex justify-around gap-x-5">
           <input
             className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-1 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
             onChange={addingMessage}
             type="text"
             name="message"
-            placeholder="Add new message"
+            placeholder="Update task"
           />
-          <button onClick={onUpdateTask}>Update</button>
-        </>
+          <button
+            className="text-white bg-purple-700 hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800"
+            onClick={onUpdateTask}
+          >
+            Update
+          </button>
+        </div>
       )}
     </form>
   );

@@ -3,7 +3,7 @@ import Task from "./Task";
 
 const ListOfTasks = ({ tasks, clickedEdit, setClickedEdit }) => {
   return (
-    <ol>
+    <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
       {tasks.map((task) => (
         <Task
           key={task.id}
@@ -12,7 +12,7 @@ const ListOfTasks = ({ tasks, clickedEdit, setClickedEdit }) => {
           setClickedEdit={setClickedEdit}
         />
       ))}
-    </ol>
+    </table>
   );
 };
 
