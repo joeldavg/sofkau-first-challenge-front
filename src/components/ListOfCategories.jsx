@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
+import { Store } from "../state/StoreProvider";
 import ListOfTasks from "./ListOfTasks";
-import { Store } from "./StoreProvider";
 import TaskForm from "./TaskForm";
 
 const ListOfCategories = ({ clickedEdit, setClickedEdit }) => {

@@ -1,5 +1,5 @@
 import React, { useContext, useRef, useState } from "react";
-import { Store } from "./StoreProvider";
+import { Store } from "../state/StoreProvider";
 
 const TaskForm = ({ categoryId, clickedEdit, setClickedEdit }) => {
   //
@@ -64,6 +64,7 @@ const TaskForm = ({ categoryId, clickedEdit, setClickedEdit }) => {
   };
 
   let { clicked, task } = { ...clickedEdit };
+
   return (
     <form ref={formRef}>
       {!clicked ? (

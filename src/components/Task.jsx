@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Store } from "./StoreProvider";
+import { Store } from "../state/StoreProvider";
 
 const Task = ({ task, clickedEdit, setClickedEdit }) => {
   const { state, dispatch } = useContext(Store);

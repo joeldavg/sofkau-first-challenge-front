@@ -1,8 +1,8 @@
 import { useState } from "react";
-import "./index.css";
 import CategoryForm from "./components/CategoryForm";
 import ListOfCategories from "./components/ListOfCategories";
-import StoreProvider from "./components/StoreProvider";
+import "./index.css";
+import StoreProvider from "./state/StoreProvider";
 
 function App() {
   const [clickedEdit, setClickedEdit] = useState({

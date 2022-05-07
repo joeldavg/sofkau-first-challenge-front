@@ -1,5 +1,5 @@
 import React, { useContext, useRef, useState } from "react";
-import { Store } from "./StoreProvider";
+import { Store } from "../state/StoreProvider";
 
 const CategoryForm = ({ clickedEdit }) => {
   const { state, dispatch } = useContext(Store);
